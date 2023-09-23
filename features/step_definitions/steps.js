@@ -15,8 +15,13 @@ When('User clicks the Login button', async function () {
 
 Then('User should see the "Epic sadface: Username is required" error message', async function () {
   const errorElement = await driver.findElement(By.id('login_button_container'));
-  await errorElement 
+  const actualErrorMessage = await errorElement.getText();
 
+  const expectedErrorMessage = "Epic sadface: Username is required"
+
+  await actualErrorMessage
+  
+  assert.strictEqual(actualErrorMessage, expectedErrorMessage);
   await driver.quit();
 });
 
